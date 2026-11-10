@@ -95,7 +95,7 @@ def docker(
         console.print(f"[red]Docker error:[/red] {exc}")
         raise typer.Exit(2) from exc
     except OSError as exc:
-        console.print(f"[red]Output error:[/red] {exc}", stderr=True)
+        console.print(f"[red]Output error:[/red] {exc}")
         raise typer.Exit(2) from exc
 
 
@@ -124,7 +124,7 @@ def audit(
         console.print(f"[red]Audit error:[/red] {exc}")
         raise typer.Exit(2) from exc
     except OSError as exc:
-        console.print(f"[red]Output error:[/red] {exc}", stderr=True)
+        console.print(f"[red]Output error:[/red] {exc}")
         raise typer.Exit(2) from exc
 
 
