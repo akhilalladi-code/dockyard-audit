@@ -1,7 +1,8 @@
 from pathlib import Path
 
-from dockyard_audit.cli import app
 from typer.testing import CliRunner
+
+from dockyard_audit.cli import app
 
 runner = CliRunner()
 
