@@ -1,0 +1,38 @@
+name: Bug report
+description: Report a reproducible problem with Dockyard Audit
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not include secrets, registry credentials, or sensitive infrastructure details."
+  - type: input
+    id: version
+    attributes:
+      label: Dockyard version
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command and sanitized Compose input
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
