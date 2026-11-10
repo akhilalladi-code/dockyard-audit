@@ -35,7 +35,8 @@ def test_compose_cli_json(tmp_path: Path):
     )
     result = runner.invoke(app, ["compose", str(file), "--format", "json"])
     assert result.exit_code == 0
-    assert '"findings": []' in result.output
+    assert '"total": 1' in result.output
+    assert '"COMPOSE007"' in result.output
 
 
 def test_audit_requires_a_source():
