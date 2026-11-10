@@ -13,7 +13,7 @@ from dockyard_audit import __version__
 from dockyard_audit.auditor import DockerAuditError, audit_docker
 from dockyard_audit.checks.compose import audit_compose
 from dockyard_audit.config import ComposeConfigError, load_compose
-from dockyard_audit.models import Finding, SEVERITY_ORDER, sort_findings
+from dockyard_audit.models import SEVERITY_ORDER, Finding, sort_findings
 from dockyard_audit.reporters.json_report import render_json
 from dockyard_audit.reporters.terminal import render_terminal
 
