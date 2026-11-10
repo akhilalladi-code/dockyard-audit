@@ -8,6 +8,7 @@ from typing import Annotated
 
 import typer
 from rich.console import Console
+from rich.theme import Theme
 
 from dockyard_audit import __version__
 from dockyard_audit.auditor import DockerAuditError, audit_docker
@@ -23,7 +24,7 @@ app = typer.Typer(
     no_args_is_help=True,
     add_completion=False,
 )
-console = Console()
+console = Console(stderr=True)
 
 
 class OutputFormat(str, Enum):
@@ -73,10 +74,10 @@ def compose(
         _emit(findings, output_format, output)
         _exit_for_findings(findings, fail_on)
     except ComposeConfigError as exc:
-        console.print(f"[red]Compose error:[/red] {exc}", stderr=True)
+        console.print(f"[red]Compose error:[/red] {exc}")
         raise typer.Exit(2) from exc
     except OSError as exc:
-        console.print(f"[red]Output error:[/red] {exc}", stderr=True)
+        console.print(f"[red]Output error:[/red] {exc}")
         raise typer.Exit(2) from exc
 
 
@@ -92,7 +93,7 @@ def docker(
         _emit(findings, output_format, output)
         _exit_for_findings(findings, fail_on)
     except DockerAuditError as exc:
-        console.print(f"[red]Docker error:[/red] {exc}", stderr=True)
+        console.print(f"[red]Docker error:[/red] {exc}")
         raise typer.Exit(2) from exc
     except OSError as exc:
         console.print(f"[red]Output error:[/red] {exc}", stderr=True)
@@ -109,7 +110,7 @@ def audit(
 ) -> None:
     """Audit one or both sources in a single report."""
     if compose_file is None and not include_docker:
-        console.print("Select at least one source using --compose or --docker.", style="red", stderr=True)
+        console.print("Select at least one source using --compose or --docker.", style="red")
         raise typer.Exit(2)
     findings: list[Finding] = []
     try:
@@ -121,7 +122,7 @@ def audit(
         _emit(findings, output_format, output)
         _exit_for_findings(findings, fail_on)
     except (ComposeConfigError, DockerAuditError) as exc:
-        console.print(f"[red]Audit error:[/red] {exc}", stderr=True)
+        console.print(f"[red]Audit error:[/red] {exc}")
         raise typer.Exit(2) from exc
     except OSError as exc:
         console.print(f"[red]Output error:[/red] {exc}", stderr=True)
