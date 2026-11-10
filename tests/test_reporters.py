@@ -1,6 +1,8 @@
 import json
+
 from dockyard_audit.models import Finding
 from dockyard_audit.reporters.json_report import render_json
+
 
 def test_json_report_summary():
     findings = [Finding("COMPOSE003", "critical", "api", "Privileged", "Details", "Fix it")]
