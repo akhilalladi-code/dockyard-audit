@@ -8,7 +8,6 @@ from typing import Annotated
 
 import typer
 from rich.console import Console
-from rich.theme import Theme
 
 from dockyard_audit import __version__
 from dockyard_audit.auditor import DockerAuditError, audit_docker
@@ -24,7 +23,7 @@ app = typer.Typer(
     no_args_is_help=True,
     add_completion=False,
 )
-console = Console(stderr=True, theme=Theme({"red": "red"}))
+console = Console(stderr=True)
 
 
 class OutputFormat(str, Enum):
